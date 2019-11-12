@@ -24,8 +24,10 @@ const useStyles = makeStyles(theme => ({
 
 const ButtonAppBar = () => {
   const { redirect_uri, return_to } = config.auth0;
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, loading } = useAuth0();
   const classes = useStyles();
+
+  console.log('appnavbar.loading:', loading);
 
   return (
     <div className={classes.root}>
