@@ -29,6 +29,10 @@ const ButtonAppBar = () => {
 
   console.log('appnavbar.loading:', loading);
 
+  if(loading){
+    return (<div>Loading...</div>);
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="static">

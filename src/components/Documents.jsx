@@ -17,7 +17,7 @@ import SuccessSnackbar from './notifications/SuccessSnackbar';
 import config from '../config';
 import languages from './lang_config.json';
 
-const baseApiUrl = config.REACT_APP_BASE_API_URL;
+const baseApiUrl = config.BASE_API_URL;
 
 const styles = theme => ({
   form: {
@@ -95,13 +95,13 @@ class Documents extends React.Component {
       toLanguagesList: [],
       translatedFiles: [],
       isSuccess: false,
-      isDisabled: false
+      isDisabled: false,
+      loading: this.context.loading
     }
   }
 
   componentDidMount = async () => {
-    const { loading } = this.context;
-    console.log('loading:', loading);
+    console.log('loading:', this.state.loading);
     this.filterLanguagesList('');
 
     const config = await getConfig(this.context, 'application/json');
