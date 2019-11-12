@@ -58,8 +58,6 @@ const styles = theme => ({
   }
 });
 
-const { loading } = context;
-
 const getConfig = async (context, contentType) => {
   const { getTokenSilently } = context;
   let accessToken = await getTokenSilently();
@@ -102,6 +100,7 @@ class Documents extends React.Component {
   }
 
   componentDidMount = async () => {
+    const { loading } = this.context;
     console.log('loading:', loading);
     this.filterLanguagesList('');
 
