@@ -13,13 +13,11 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0"
   },
-  "proxy": "https://msoegiarto-mtl.herokuapp.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
