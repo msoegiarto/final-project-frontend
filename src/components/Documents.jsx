@@ -14,7 +14,10 @@ import Select from './documents/Select';
 import TranslatedFile from './documents/TranslatedFile';
 import Message from './notifications/Message';
 import SuccessSnackbar from './notifications/SuccessSnackbar';
+import config from '../config';
 import languages from './lang_config.json';
+
+const baseApiUrl = config.REACT_APP_BASE_API_URL;
 
 const styles = theme => ({
   form: {
@@ -103,7 +106,7 @@ class Documents extends React.Component {
     const user = getUser(this.context);
 
     try {
-      const res = await axios.post('/api/translate/documents', user, config);
+      const res = await axios.post(baseApiUrl + '/api/translate/documents', user, config);
 
       if (res.data.translatedFiles) {
         this.setState(prevState => ({
@@ -177,7 +180,7 @@ class Documents extends React.Component {
 
     try {
       const res = await axios({
-        url: '/api/translate/documents/translate',
+        url: baseApiUrl + '/api/translate/documents/translate',
         method: 'POST',
         headers: config.headers,
         data: formData,
@@ -233,7 +236,7 @@ class Documents extends React.Component {
 
     try {
       const res = await axios({
-        url: '/api/translate/documents/download',
+        url: baseApiUrl + '/api/translate/documents/download',
         method: 'POST',
         headers: config.headers,
         responseType: 'blob',
@@ -284,7 +287,7 @@ class Documents extends React.Component {
 
     try {
       const res = await axios({
-        url: '/api/translate/documents/delete',
+        url: baseApiUrl + '/api/translate/documents/delete',
         method: 'DELETE',
         headers: config.headers,
         data: data
