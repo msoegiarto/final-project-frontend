@@ -105,9 +105,13 @@ class Documents extends React.Component {
     }
   }
 
-  componentDidMount = async () => {
+  conponentDidUpdate = () => {
     const contextLoading = isLoading(this.context);
     this.setState({ loading: contextLoading })
+    console.log(this.state.loading);
+  }
+
+  componentDidMount = async () => {
     this.filterLanguagesList('');
 
     const config = await getConfig(this.context, 'application/json');
