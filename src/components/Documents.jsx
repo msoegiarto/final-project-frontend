@@ -80,6 +80,11 @@ const getUser = context => {
   };
 }
 
+const isLoading = context => {
+  const { loading } = context;
+  return loading;
+}
+
 class Documents extends React.Component {
 
   static contextType = Auth0Context;
@@ -88,6 +93,7 @@ class Documents extends React.Component {
     super(props);
     this.state = {
       limit: 3,
+      loading: true,
       files: null,
       fromLanguage: '',
       toLanguage: '',
@@ -95,13 +101,13 @@ class Documents extends React.Component {
       toLanguagesList: [],
       translatedFiles: [],
       isSuccess: false,
-      isDisabled: false,
-      loading: this.context.loading
+      isDisabled: false
     }
   }
 
   componentDidMount = async () => {
-    console.log('loading:', this.state.loading);
+    const contextLoading = isLoading(this.context);
+    this.setState({ loading: contextLoading })
     this.filterLanguagesList('');
 
     const config = await getConfig(this.context, 'application/json');
@@ -313,6 +319,10 @@ class Documents extends React.Component {
 
   render() {
     const { classes } = this.props;
+
+    if (this.state.loading) {
+      return (<div>Now Loading...</div>);
+    }
 
     return (
       <div className={classes.container}>
