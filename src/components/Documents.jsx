@@ -15,6 +15,9 @@ import TranslatedFile from './documents/TranslatedFile.jsx';
 import Message from './notifications/Message.jsx';
 import SuccessSnackbar from './notifications/SuccessSnackbar.jsx';
 import languages from './lang_config.json';
+import config from '../config';
+
+axios.defaults.baseURL = config.baseMtlApiUrl;
 
 const styles = theme => ({
   form: {

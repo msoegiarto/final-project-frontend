@@ -5,14 +5,13 @@ import Home from './components/Home';
 import PrivateRoute from './components/routes/PrivateRoute';
 import Documents from './components/Documents';
 import NotFound from './components/NotFound';
-import config from './config';
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter basename={config.baseMtlApiUrl}>
+      <BrowserRouter>
         <AppNavbar />
         <Switch>
           <Route exact path="/" component={Home} />
