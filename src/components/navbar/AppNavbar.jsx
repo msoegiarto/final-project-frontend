@@ -7,7 +7,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import config from '../../config';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,15 +22,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ButtonAppBar = () => {
-  const { redirect_uri, return_to } = config.auth0;
-  const { isAuthenticated, loginWithRedirect, logout, loading } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const classes = useStyles();
-
-  console.log('appnavbar.loading:', loading);
-
-  if(loading){
-    return (<div>Loading...</div>);
-  }
 
   return (
     <div className={classes.root}>
@@ -47,7 +39,7 @@ const ButtonAppBar = () => {
             <Link to="/" className="no-decor" color="secondary">MTL</Link>
           </Typography>
           {!isAuthenticated && (
-            <Button color="inherit" onClick={() => { loginWithRedirect({ redirect_uri: redirect_uri }) }}>
+            <Button color="inherit" onClick={() => { loginWithRedirect({}) }}>
               Login
             </Button>
           )}
@@ -56,7 +48,7 @@ const ButtonAppBar = () => {
               <Button color="inherit">
                 <Link to="/documents" className="no-decor">Documents</Link>
               </Button>
-              <Button color="inherit" style={{ color: '#616161' }} onClick={() => logout({ returnTo: return_to })}>Logout</Button>
+              <Button color="inherit" style={{ color: '#616161' }} onClick={() => logout({ })}>Logout</Button>
             </>
           )}
         </Toolbar>

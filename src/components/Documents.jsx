@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { Auth0Context } from "../auth0/react-auth0-wrapper";
 import axios from 'axios';
 import PropTypes from "prop-types";
-import UploadDropzone from './documents/UploadDropzone';
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Button from '@material-ui/core/Button';
@@ -10,14 +9,12 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import CloudDownloadOutlinedIcon from '@material-ui/icons/CloudDownloadOutlined';
-import Select from './documents/Select';
-import TranslatedFile from './documents/TranslatedFile';
-import Message from './notifications/Message';
-import SuccessSnackbar from './notifications/SuccessSnackbar';
-import config from '../config';
+import UploadDropzone from './documents/UploadDropzone.jsx';
+import Select from './documents/Select.jsx';
+import TranslatedFile from './documents/TranslatedFile.jsx';
+import Message from './notifications/Message.jsx';
+import SuccessSnackbar from './notifications/SuccessSnackbar.jsx';
 import languages from './lang_config.json';
-
-const baseApiUrl = config.BASE_API_URL;
 
 const styles = theme => ({
   form: {
@@ -61,6 +58,7 @@ const styles = theme => ({
 const getConfig = async (context, contentType) => {
   const { getTokenSilently } = context;
   let accessToken = await getTokenSilently();
+  console.log(accessToken);
 
   return {
     headers: {
@@ -80,11 +78,6 @@ const getUser = context => {
   };
 }
 
-const isLoading = context => {
-  const { loading } = context;
-  return loading;
-}
-
 class Documents extends React.Component {
 
   static contextType = Auth0Context;
@@ -93,7 +86,6 @@ class Documents extends React.Component {
     super(props);
     this.state = {
       limit: 3,
-      loading: true,
       files: null,
       fromLanguage: '',
       toLanguage: '',
@@ -105,12 +97,6 @@ class Documents extends React.Component {
     }
   }
 
-  conponentDidUpdate = () => {
-    const contextLoading = isLoading(this.context);
-    this.setState({ loading: contextLoading })
-    console.log(this.state.loading);
-  }
-
   componentDidMount = async () => {
     this.filterLanguagesList('');
 
@@ -118,7 +104,7 @@ class Documents extends React.Component {
     const user = getUser(this.context);
 
     try {
-      const res = await axios.post(baseApiUrl + '/api/translate/documents', user, config);
+      const res = await axios.post('/api/translate/documents', user, config);
 
       if (res.data.translatedFiles) {
         this.setState(prevState => ({
@@ -192,7 +178,7 @@ class Documents extends React.Component {
 
     try {
       const res = await axios({
-        url: baseApiUrl + '/api/translate/documents/translate',
+        url: '/api/translate/documents/translate',
         method: 'POST',
         headers: config.headers,
         data: formData,
@@ -240,7 +226,7 @@ class Documents extends React.Component {
         tobeDownloadedFileIds.push({ id: element.id });
       });
       data.translatedFiles = tobeDownloadedFileIds;
-      // this.setState({ files: null });
+      
     } else {
       data.translatedFiles = [{ id: id }];
     }
@@ -248,9 +234,10 @@ class Documents extends React.Component {
 
     try {
       const res = await axios({
-        url: baseApiUrl + '/api/translate/documents/download',
+        url: '/api/translate/documents/download',
         method: 'POST',
         headers: config.headers,
+        config: config,
         responseType: 'blob',
         data: data
       });
@@ -299,7 +286,7 @@ class Documents extends React.Component {
 
     try {
       const res = await axios({
-        url: baseApiUrl + '/api/translate/documents/delete',
+        url: '/api/translate/documents/delete',
         method: 'DELETE',
         headers: config.headers,
         data: data
@@ -323,10 +310,6 @@ class Documents extends React.Component {
 
   render() {
     const { classes } = this.props;
-
-    if (this.state.loading) {
-      return (<div>Now Loading...</div>);
-    }
 
     return (
       <div className={classes.container}>
