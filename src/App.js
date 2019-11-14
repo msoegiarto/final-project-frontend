@@ -5,7 +5,6 @@ import Home from './components/Home';
 import PrivateRoute from './components/routes/PrivateRoute';
 import Documents from './components/Documents';
 import NotFound from './components/NotFound';
-import config from './config';
 
 import './App.css';
 

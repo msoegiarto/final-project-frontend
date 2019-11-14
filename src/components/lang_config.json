@@ -8,9 +8,12 @@
   "key": "de",
   "value": "German"
 }, {
+  "key": "it",
+  "value": "Italian"
+}, {
   "key": "es",
   "value": "Spanish"
 }, {
-  "key": "it",
-  "value": "Italian"
+  "key": "th",
+  "value": "Thai"
 }]
