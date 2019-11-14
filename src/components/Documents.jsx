@@ -14,6 +14,7 @@ import Select from './documents/Select.jsx';
 import TranslatedFile from './documents/TranslatedFile.jsx';
 import Message from './notifications/Message.jsx';
 import SuccessSnackbar from './notifications/SuccessSnackbar.jsx';
+import DeleteDialog from './documents/DeleteDialog';
 import languages from './lang_config.json';
 import config from '../config';
 
@@ -61,7 +62,6 @@ const styles = theme => ({
 const getConfig = async (context, contentType) => {
   const { getTokenSilently } = context;
   let accessToken = await getTokenSilently();
-  console.log(accessToken);
 
   return {
     headers: {
@@ -96,7 +96,8 @@ class Documents extends React.Component {
       toLanguagesList: [],
       translatedFiles: [],
       isSuccess: false,
-      isDisabled: false
+      isDisabled: false,
+      openDeleteDialog: false
     }
   }
 
@@ -229,7 +230,7 @@ class Documents extends React.Component {
         tobeDownloadedFileIds.push({ id: element.id });
       });
       data.translatedFiles = tobeDownloadedFileIds;
-      
+
     } else {
       data.translatedFiles = [{ id: id }];
     }
@@ -281,7 +282,9 @@ class Documents extends React.Component {
         tobeDeletedFileIds.push({ id: element.id });
       });
       data.translatedFiles = tobeDeletedFileIds;
-      this.setState({ files: null });
+      if (this.state.translatedFiles.length === this.state.limit) {
+        this.setState({ files: null });
+      }
     } else {
       data.translatedFiles = [{ id: id }];
       this.setState({ translatedFiles: [] });
@@ -309,6 +312,12 @@ class Documents extends React.Component {
 
   onClickDeleteAll = () => {
     this.onClickDelete('ALL');
+  }
+
+  toggleDeleteDialog = () => {
+    this.setState(prevState => ({
+      openDeleteDialog: !prevState.openDeleteDialog
+    }));
   }
 
   render() {
@@ -408,10 +417,14 @@ class Documents extends React.Component {
                     size="medium"
                     className={classes.deleteBtn}
                     startIcon={<DeleteOutlinedIcon color="inherit" />}
-                    onClick={this.onClickDeleteAll}
+                    onClick={this.toggleDeleteDialog}
                     disabled={this.state.isDisabled}>
                     Delete All
                     </Button>
+                  <DeleteDialog
+                    openDeleteDialog={this.state.openDeleteDialog}
+                    toggleDeleteDialog={this.toggleDeleteDialog}
+                    onClickDelete={this.onClickDeleteAll} />
                   <Button
                     variant="contained"
                     size="medium"
