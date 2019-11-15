@@ -66,7 +66,7 @@ const Home = () => {
       </CardActionArea>
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          Photo by <a href="https://www.translatemedia.com/">translatemedia</a>
+          Image by <a href="https://www.translatemedia.com/">translatemedia</a>
         </Typography>
       </CardContent>
     </Card>
