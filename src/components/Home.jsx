@@ -47,28 +47,32 @@ const useStyles = makeStyles(theme => ({
       textShadow:
         '-1px -1px 1px #fff, 1px -1px 1px #fff, -1px 1px 1px #fff, 1px 1px 1px #fff'
     },
-  }
+  },
 }));
 
 const Home = () => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
-      <CardActionArea className={classes.action}>
-        <CardMedia
-          className={classes.media}
-          image={image}
-        />
-        <Typography component="p" className={classes.description}>There’s no better feeling than being clear:</Typography>
-        <Typography component="h1" variant="h4" className={classes.title}>drop your documents and get this sheet done</Typography>
-      </CardActionArea>
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          Photo by <a href="https://www.translatemedia.com/">translatemedia</a>
-        </Typography>
-      </CardContent>
-    </Card>
+    <div>
+      <Card className={classes.card}>
+        <CardActionArea className={classes.action}>
+          <CardMedia
+            className={classes.media}
+            image={image}
+          />
+          <Typography component="p" className={classes.description}>There’s no better feeling than being clear:</Typography>
+          <Typography component="h1" variant="h4" className={classes.title}>drop your documents and get this sheet done</Typography>
+        </CardActionArea>
+      </Card>
+      <Card className={classes.card}>
+        <CardContent>
+          <Typography variant="body2" color="textSecondary" component="p">
+            Image by <a href="https://www.translatemedia.com/">translatemedia</a>, Copywriting by <a href="https://twitter.com/absolute_basura">Lilia Paz</a>
+          </Typography>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 
