@@ -1,107 +1,68 @@
-# MTL (Machine Translation)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This is a webapp that let the user to upload a file and download the translated file.
+## Available Scripts
 
-# Installation
+In the project directory, you can run:
 
-Note: app are divided into 2 parts: server and client
+### `npm start`
 
-Server: https://github.com/msoegiarto/final-project-backend
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Client: https://github.com/msoegiarto/final-project
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-1.  Fork and clone the repo
+### `npm test`
 
-2.  Create a file `.env` file in backend/
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-    ```
-    AUTH0_DOMAIN=<your_auth0_domain>.auth0.com
-    AUTH0_AUDIENCE=https://<your_auth0_api>
+### `npm run build`
 
-    MONGO_URI=mongodb://<host>:<port>/<database_name>
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-    MS_TRANSLATION_TEXT_SUBSCRIPTION_KEY=<your_microsoft_translation_api_key>
-    MS_TRANSLATION_TEXT_ACCESS_TOKEN_URL=<your_microsoft_access_token_url>
-    MS_TRANSLATION_TEXT_BASE_URL=<microsoft_translation_api_endpoint>
-    ```
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-3. Create a file `.env.local` in client/
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-    ```
-    REACT_APP_AUTH0_DOMAIN=<your_auth0_domain>.auth0.com
-    REACT_APP_AUTH0_AUDIENCE=https://<your_auth0_api>
-    REACT_APP_AUTH0_CLIENTID=<your_auth0_client_id>
-    ```
+### `npm run eject`
 
-4.  Install the dependencies
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-    Server: `npm install`
-    
-    Client: `npm run client-install`
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-5.  Run the application
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-    Server: `npm run server`
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-    Client: `npm run client`
+## Learn More
 
-# User flow
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-![user_flow](./images/UserFlow.png)
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-# Data Model
+### Code Splitting
 
-![data_model](./images/ERD.png)
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-__System table__
+### Analyzing the Bundle Size
 
-table name = translations
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-| columns               | type     | constraints    | 
-| --------------------- | -------- | -------------- | 
-| _id                   | objectId | PK             | 
-| name                  |   string | NN, U          | 
-| time_interval         |   number | default 590000 | 
-| time_last_requested   |   number | default 0      | 
-| token                 |   string | default ''     | 
+### Making a Progressive Web App
 
-# Built with
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-__API__
+### Advanced Configuration
 
-[Microsoft Translator](https://www.microsoft.com/en-us/translator/)
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-__Library__
+### Deployment
 
-[express](https://expressjs.com/)
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-[express-cors](https://github.com/expressjs/cors)
+### `npm run build` fails to minify
 
-[express-fileupload](https://github.com/richardgirges/express-fileupload)
-
-[dotenv](https://github.com/motdotla/dotenv)
-
-[jszip](https://stuk.github.io/jszip/)
-
-[mongoDB](https://www.mongodb.com/)
-
-[mongoose](https://mongoosejs.com/)
-
-[react](https://reactjs.org/)
-
-[material-ui](https://material-ui.com/)
-
-[material-ui-dropzone](https://github.com/Yuvaleros/material-ui-dropzone)
-
-[axios](https://github.com/axios/axios)
-
-__Authentication__
-
-[Auth0](https://auth0.com/)
-
-[Auth0 express-jwt](https://github.com/auth0/express-jwt)
-
-[Auth0 jwks-rsa](https://github.com/auth0/node-jwks-rsa)
-
-[Auth0 auth0-spa-js](https://github.com/auth0/auth0-spa-js)
-
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

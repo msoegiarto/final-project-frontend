@@ -5,17 +5,18 @@
   "key": "fr",
   "value": "French"
 }, {
+  "key": "ja",
+  "value": "Japanese"
+},
+{
   "key": "de",
   "value": "German"
 }, {
-  "key": "ja",
-  "value": "Japanese"
+  "key": "es",
+  "value": "Spanish"
 }, {
   "key": "it",
   "value": "Italian"
-}, {
-  "key": "es",
-  "value": "Spanish"
 }, {
   "key": "th",
   "value": "Thai"

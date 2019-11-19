@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { Auth0Provider } from './contexts/react-auth0-context';
+import { TxtransProvider } from './contexts/document-translation-context';
 import { ThemeProvider } from '@material-ui/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from './theme';
-import { Auth0Provider } from './auth0/react-auth0-wrapper';
 import config from './config';
 
 const { auth0 } = config;
@@ -32,7 +33,9 @@ ReactDOM.render(
       returnTo={auth0.returnTo}
       audience={auth0.audience}
       onRedirectCallback={onRedirectCallback}>
-      <App />
+      <TxtransProvider>
+        <App />
+      </TxtransProvider>
     </Auth0Provider>
   </ThemeProvider>,
   document.getElementById('root'));
